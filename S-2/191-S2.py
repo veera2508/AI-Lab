@@ -1,7 +1,9 @@
 '''
-State: 3x3 matrix with the empty box as -1
+8 puzzle problem
+
+State: 3x3 matrix with the empty box as 0
 Action: [(-1, 0), (1, 0), (0, -1), (0, +1)] Swap with top, bottom, left, right respectively
-Goal State: [[ , 1, 2][3, 4, 5][6, 7, 8]]
+Goal State: [[0, 1, 2][3, 4, 5][6, 7, 8]]
 '''
 from copy import deepcopy
 from collections import deque
