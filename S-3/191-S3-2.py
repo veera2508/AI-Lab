@@ -69,30 +69,39 @@ def randconfig():
     return config
 
 def getlow(config):
-    mincost = cost(config)
-    minconfig = config
+    actionvals = []
+    curcst = cost(config)
     for i in range(len(config)):
-        temp = deepcopy(minconfig)
+        temp = deepcopy(config)
         for j in range(len(config)):
+            if j == config[i]:
+                continue
             temp[i] = j
-            cst = cost(temp)
-            if cst < mincost:
-                mincost =  cst
-                minconfig = temp
+            if temp != config:
+                cst = cost(temp)
+                if cst <= curcst:
+                    actionvals.append((temp, cst))
+    
+    if not actionvals:
+        return config
+    minconfig, mincost = actionvals[0]
+    for i in range(1, len(actionvals)):
+        con, cst = actionvals[i]
+        if cst < mincost:
+            mincost = cst
+            minconfig = con
     return minconfig, mincost
 
 def hillclimb(config = None):
     if not config:
         config = randconfig()
-    print(config, cost(config))
     cst = cost(config)
     i = 0
     pcst = 0
     j = 0
     while True:
         config, cst = getlow(config)
-        print(j, config, cst)
-        if cst == 0:
+        if cst == 0 or not cst:
             return config
         if pcst == cst:
             i += 1
@@ -107,11 +116,11 @@ def hillclimb(config = None):
 def search(iterations):
     for i in range(iterations):
         config, cst = hillclimb()
-        print(config, cst)
+        print(i, config, cst)
         if cst == 0:
             print("Solution Found")
 
-search(1000)
+search(10)
 
 
 
