@@ -1,3 +1,4 @@
+''' 8 queens using Genetic Algorithm '''
 import random
 import time
 from copy import deepcopy
@@ -113,10 +114,7 @@ def ga():
 
 ga()
 
-'''
-(base) Veeraraghavans-MacBook-Pro-2:S-4 veeraraghavan$ python3 191-S4.py
-Sol found:  [4, 2, 7, 3, 1, 8, 5, 0, 6]
-'''
+
         
 
 
